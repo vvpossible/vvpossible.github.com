@@ -8,11 +8,14 @@ tags : [tcp/ip, c, programming]
 
 A web socket implementation.
 
-{% highlight c %}
+{% highlight python %}
 int main(int argc, char** argv)
 {
    int a;
    printf("%d", a);
 }
+
+def main:
+    print a
 {% endhighlight %}
 
