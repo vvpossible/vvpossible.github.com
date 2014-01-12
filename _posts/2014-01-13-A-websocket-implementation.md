@@ -8,3 +8,11 @@ tags : [tcp/ip, c, programming]
 
 A web socket implementation.
 
+{% highlight c %}
+int main(int argc, char** argv)
+{
+   int a;
+   printf("%d", a);
+}
+{% endhighlight %}
+
