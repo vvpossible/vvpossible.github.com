@@ -30,7 +30,8 @@ A `programmer` who:
 
 ## Contact Me
 
-Mail:  [weiweipossible@gmail.com] 
-Weibo: [@vvpossible]
+`Mail:  weiweipossible@gmail.com`
+
+`Weibo: @vvpossible`
 
 
