@@ -16,27 +16,7 @@ tags : [BMC, Linux]
 
 misc设备，本质上就是主设备号为10的char设备。watchdog设备的minor#是130.
 
-{% highlight c %}
-static struct miscdevice ipmi_wdog_miscdev = {
-    .minor      = WATCHDOG_MINOR,
-    .name       = "watchdog",
-    .fops       = &ipmi_wdog_fops
-};
-{% endhighlight %}
 
-文件操作函数重载。
-{% highlight c %}
-static const struct file_operations ipmi_wdog_fops = {
-    .owner   = THIS_MODULE,
-    .read    = ipmi_read,
-    .poll    = ipmi_poll,
-    .write   = ipmi_write,
-    .ioctl   = ipmi_ioctl,
-    .open    = ipmi_open,
-    .release = ipmi_close,
-    .fasync  = ipmi_fasync,
-};
-{% endhighlight %}
 
 pet watchdog，可以看到，如果nowayout是0的话，那么可以写入V来停止watchdog。
 {% highlight c %}
