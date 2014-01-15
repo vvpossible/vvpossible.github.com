@@ -15,8 +15,27 @@ tags : [BMC, Linux]
 实现在 linux-x.x.xx/drivers/char/ipmi/ipmi_watchdog.c
 
 misc设备，本质上就是主设备号为10的char设备。watchdog设备的minor#是130.
+{% highlight c %}
+static struct miscdevice ipmi_wdog_miscdev = {
+    .minor      = WATCHDOG_MINOR,
+    .name       = "watchdog",
+    .fops       = &ipmi_wdog_fops
+};
+{% endhighlight %}
 
-
+文件操作函数重载。
+{% highlight c %}
+static const struct file_operations ipmi_wdog_fops = {
+    .owner   = THIS_MODULE,
+    .read    = ipmi_read,
+    .poll    = ipmi_poll,
+    .write   = ipmi_write,
+    .ioctl   = ipmi_ioctl,
+    .open    = ipmi_open,
+    .release = ipmi_close,
+    .fasync  = ipmi_fasync,
+};
+{% endhighlight %}
 
 pet watchdog，可以看到，如果nowayout是0的话，那么可以写入V来停止watchdog。
 {% highlight c %}
@@ -80,6 +99,5 @@ static void ipmi_wdog_pretimeout_handler(void *handler_data)
     pretimeout_since_last_heartbeat = 1;
 }
 {% endhighlight %}
-
 
 ipmi driver听起来简单，看起来还是挺琐碎的，有空再看看。
